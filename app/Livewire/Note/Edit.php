@@ -8,7 +8,7 @@ use Livewire\Attributes\{Title, Computed};
 
 class Edit extends Component
 {
-    public ?Note $note;
+    public Note $note;
     public $content;
     public $title;
 
@@ -22,9 +22,26 @@ class Edit extends Component
     #[Title('Edit Note')]
     public function render()
     {
-        \Log::debug($this->note);
-        \Log::debug($this->title);
-        \Log::debug($this->content);
         return view('livewire.note.edit');
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName, [
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        $this->updateNote();
+    }
+
+    public function updateNote()
+    {
+        $this->note->update([
+            'title' => $this->title,
+            'content' => $this->content,
+        ]);
+
+        session()->flash('message', 'Note updated successfully.');
     }
 }

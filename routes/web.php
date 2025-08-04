@@ -14,6 +14,8 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/notes/{note}/edit', NoteEdit::class);
+
     Route::redirect('settings', 'settings/profile');
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
@@ -27,6 +29,5 @@ Route::get('/teste', function() {
 
 Route::get('/counter', Counter::class);
 
-Route::get('/note/{note}/edit', NoteEdit::class);
 
 require __DIR__.'/auth.php';

@@ -4,7 +4,7 @@
         <x-note.body model="content" autofocus>
             {{ $content }}
         </x-note.body>
-        <x-note.footer />
+        <x-note.footer :note='$note' />
 </div>
 
 

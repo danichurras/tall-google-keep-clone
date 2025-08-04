@@ -1,3 +1,4 @@
+@props(['note'])
 <div class="flex gap-2 text-lg">
     <div class="flex">
         <x-note.footer-button function='bold' title='Bold'>
@@ -20,6 +21,10 @@
     <x-note.footer-button function='createLink' title='Insert Link'>
         <flux:icon.link />
     </x-note.footer-button>
+
+    <div wire:poll.15s.visible class="ml-auto text-sm italic pr-2">
+        Last edited: {{ $note->updated_at->diffForHumans() }}
+    </div>
 </div>
 </div>
 
