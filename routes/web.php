@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Livewire\Counter;
 use App\Livewire\Note\Edit as NoteEdit;
+use App\Livewire\Note\Index as NoteIndex;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,6 +15,7 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/notes', NoteIndex::class)->name('notes.index');
     Route::get('/notes/{note}/edit', NoteEdit::class);
 
     Route::redirect('settings', 'settings/profile');

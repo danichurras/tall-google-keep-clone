@@ -1,5 +1,7 @@
-@props(['note'])
-<div class="flex gap-2 text-lg">
+@props(['note'=> new \App\Models\Note])
+<div {{$attributes->merge([
+    "class"=>"flex gap-2 text-lg"
+    ])}}>
     <div class="flex">
         <x-note.footer-button function='bold' title='Bold'>
             <b>B</b>
@@ -22,9 +24,10 @@
         <flux:icon.link />
     </x-note.footer-button>
 
-    <div wire:poll.15s.visible class="ml-auto text-sm italic pr-2">
-        Last edited: {{ $note->updated_at->diffForHumans() }}
-    </div>
-</div>
+    @if($note?->id)
+        <div wire:poll.15s.visible class="ml-auto text-sm italic pr-2">
+            Last edited: {{ $note?->updated_at?->diffForHumans() }}
+        </div>
+    @endif
 </div>
 
