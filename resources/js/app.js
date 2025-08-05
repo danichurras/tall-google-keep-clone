@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el.forEach((element) => {
         Sortable.create(element, {
             animation: 150,
+            ghostClass: 'ghost',
         })
     })
 })
