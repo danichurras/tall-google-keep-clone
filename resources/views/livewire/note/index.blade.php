@@ -4,8 +4,7 @@
         <livewire:note.create />
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 justify-center">
-
+    <div class="w-full flex flex-wrap justify-center sortable-list">
         @foreach($notes as $note)
             <livewire:note class="teste" wire:key="$note->id" :note="$note" />
         @endforeach
